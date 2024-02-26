@@ -7,9 +7,6 @@
     If the input string is empty, return an empty string. The words in the
     input String will only contain valid consecutive numbers.
 */
-
-const { CLOSING } = require("ws");
-
 const WORDS = {
     one: {
         word: 'is2 Thi1s T4est 3a',
