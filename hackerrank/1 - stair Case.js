@@ -12,3 +12,4 @@ function staircase(n) {
 
     return stairs
 }
+
