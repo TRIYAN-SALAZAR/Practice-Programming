@@ -29,18 +29,7 @@ function diagonalDifference(arr) {
         }
     }
 
-    /*
-        if(derecha > izquierda){
-            return derecha - izquierda;
-        }else if(izquierda > derecha){
-            return izquierda - derecha;
-        }
-    
-    */
-
     return ( derecha > izquierda ? derecha - izquierda : izquierda - derecha );
 }
-
-// console.log(diagonalDifference(ms.matriz))
 
 console.log('resultado: ' + diagonalDifference(matrizCuadrada(process.argv[2])));

@@ -2,7 +2,7 @@ function titleCase(str) {
     return str.split(' ').map(e => e.toLowerCase()).map(e => e[0].toUpperCase() + e.slice(1)).join(' ');
 }
 
-console.log(titleCase("I'm a little tea pot"));
+// console.log(titleCase("I'm a little tea pot"));
 
 
 // comprobar si una cadena proporcionada contiene todas las letras de otra
@@ -25,4 +25,8 @@ function mutation(arr) {
     return count === arr2.length;
 }
 
-console.log(mutation(["hello", "Hello"]));
+// console.log(mutation(["hello", "Hello"]));
+
+for(let i = 0; i < 3; i++) {
+    console.log(i);
+}

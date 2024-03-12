@@ -17,25 +17,6 @@ function solution(number) {
             break;
         }
     }
-
-    // console.log(multipleThree);
-    // console.log(multipleFive);
-
-    // let sumThree = 0;
-    // let sumFive = 0;
-
-    // for(num3 of multipleThree) {
-    //     sumThree += num3;
-    // }
-    // for(num5 of multipleFive) {
-    //     sumFive += num5;
-    // }
-
-    // console.log(sumThree)
-    // console.log(sumFive)
-    // return sumThree + sumFive;
 }
-
-// console.log(solution(20));
 
 console.log('gika nyda 88'.includes('88'))

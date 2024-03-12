@@ -36,9 +36,22 @@ function generarMatriz(x, ...b){
     return matriz;
 }
 
+function gato(){
+    const matriz = [];
+
+    for(let i = 0; i < 3; i++){
+        matriz[i] = [];
+        for(let j = 0; j < 3; j++){
+            matriz[i][j] = generarNumeroAleatorio(0, 2);
+        }
+    }
+
+    return matriz;
+}
 
 module.exports = {
     matrizCuadrada: generarMatrizBidiMensional,
-    matriz: generarMatriz
+    matriz: generarMatriz,
+    gato: gato
 
 };
