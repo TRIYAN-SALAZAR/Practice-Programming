@@ -1,4 +1,4 @@
-const { gato } = require("./6.1-Genera Matriz");
+const { gato } = require("./6.1 - Genera Matriz");
 
 /*
 We want our function to return:
