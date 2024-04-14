@@ -1,62 +1,89 @@
-snail = function (array) {
-    const SNALL = [];
-    const STEPS_ = array.length * array.length;
-    let aux = 0;
-    let aux2 = 0;
+class Snall {
+    constructor(array) {
+        this.array = array;
+    }
 
-    let state = 'RIGHT';
-    let count = 0;
+    up() {
+        const value = [];
+        const longitud = this.array.length - 1;
+
+        for(let i = longitud; i >= 0; i--) {
+            value.push(this.array[i].splice(0, 1)[0]);
+        }
+
+        return value;
+    }
+
+    down() {
+        const value = [];
+
+        for(let i = 0; i < this.array.length; i++) {
+            value.push(this.array[i].splice(-1, 1)[0]);
+        }
+
+        return value;
+    }
+
+    left() {
+        const value = [];
+        const longitud = this.array[this.array.length - 1].length - 1;
+
+        for(let i = longitud; i >= 0; i--) {
+            value.push(this.array[longitud].splice(i, 1)[0]);
+        }
+
+        this.array = this.array.pop();
+
+        return value;
+    }
+
+    right() {
+        const value = [];
+
+        for(let i = 0; i < this.array.length; i++) {
+            value.push(this.array[0].splice(0, 1)[0]);
+        }
+        this.array = this.array.shift();
+        return value;
+    }
+}
+
+function snail(array) {
+    const SNALL = [];
+    const snall = new Snall(array);
 
     do {
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] === 0) array.splice(i, 1);
-        }
+        SNALL.push(...snall.right());
+        SNALL.push(...snall.down());
+        SNALL.push(...snall.left());
+        SNALL.push(...snall.up());
+    } while(SNALL.length <= array.length * array[0].length);
 
-        count++;
-        aux2 = array.length;
-
-        switch (state) {
-            case 'RIGHT':
-                for (let i = 0; i < array[aux].length;) {
-                    SNALL.push(array[aux].splice(0, 1)[0]);
-                }
-                state = 'DOWN';
-                break;
-            case 'DOWN':
-                for (let i = 0; i < aux2; i++) {
-                    SNALL.push(array[i].splice(aux2 - 1, 1)[0])
-                }
-                aux = array.length - 1;
-                state = 'LEFT';
-                break;
-
-            case 'LEFT':
-                for (let i = aux2; i > 0; i--) {
-                    SNALL.push(array[aux].splice(-1, 1)[0]);
-                }
-                aux = 0;
-                state = 'UP';
-                break;
-
-            case 'UP':
-                for (let i = aux2; i > 0; i--) {
-                    SNALL.push(array[i - 1].splice(aux, 1)[0]);
-                }
-                aux = 0;
-                state = 'RIGHT';
-                break;
-        }
-    } while (count < STEPS_);
-
-    return SNALL.filter(e => e !== undefined);
+    return SNALL;
 }
 // console.log(' result:  ' ,'\n', 'expected:',);
 
-// console.log(' result:  ', snail([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).join('-'), '\n', 'expected:', [1, 2, 3, 6, 9, 8, 7, 4, 5].join('-'));
+console.log(' result:  ', snail([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).join('-'), '\n', 'expected:', [1, 2, 3, 6, 9, 8, 7, 4, 5].join('-'));
+console.log('longitud: ', snail([[1, 2, 3], [4, 5, 6], [7, 8, 9]]).length);
+console.log('longitud expected: ', 9);
 // console.log(' result:  ', snail([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), '\n', 'expected:', [1, 2, 3, 6, 9, 8, 7, 4, 5]);
 
+console.log('----------------------------------------------------------------------------');
 
+// console.log(' result:  ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]),'\n', 'expected:', [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]);
+console.log(' result:  ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]).join('-'),'\n', 'expected:', [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10].join('-'));
+console.log('longitud: ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]).length);
+console.log('longitud expected: ', 16);
+
+console.log('----------------------------------------------------------------------------');
 
 // console.log(' result:  ', snail([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]), '\n', 'expected:', [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13]);
 console.log(' result:  ', snail([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]).join('-'), '\n', 'expected:', [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13].join('-'));
+console.log('longitud: ', snail([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]).length);
+console.log('longitud expected: ', 25);
 
+console.log('----------------------------------------------------------------------------');
+
+console.log(' result:  ', snail([[1,2,3,4,5,6], [7,8,9,10,11,12], [13,14,15,16,17,18], [19,20,21,22,23,24], [25,26,27,28,29,30], [31,32,33,34,35,36]]).join('-'), '\n', 'expected:', [1, 2, 3, 4, 5, 6, 12, 18, 24, 30, 36, 35, 34, 33, 32, 31, 25, 19, 13, 7, 8, 9, 10, 11, 17, 23, 29, 28, 27, 26, 21, 22, 26, 20, 14, 15, 16, 21].join('-'));
+console.log('longitud: ', snail([[1,2,3,4,5,6], [7,8,9,10,11,12], [13,14,15,16,17,18], [19,20,21,22,23,24], [25,26,27,28,29,30], [31,32,33,34,35,36]]).length);
+console.log('longitud expected: ', 36);
