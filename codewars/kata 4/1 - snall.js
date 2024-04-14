@@ -7,7 +7,7 @@ class Snall {
         const value = [];
         const longitud = this.array.length - 1;
 
-        for(let i = longitud; i >= 0; i--) {
+        for (let i = longitud; i >= 0; i--) {
             value.push(this.array[i].splice(0, 1)[0]);
         }
 
@@ -16,8 +16,8 @@ class Snall {
 
     down() {
         const value = [];
-
-        for(let i = 0; i < this.array.length; i++) {
+        const length = this.array.length;
+        for (let i = 0; i < length; i++) {
             value.push(this.array[i].splice(-1, 1)[0]);
         }
 
@@ -25,39 +25,28 @@ class Snall {
     }
 
     left() {
-        const value = [];
-        const longitud = this.array[this.array.length - 1].length - 1;
-
-        for(let i = longitud; i >= 0; i--) {
-            value.push(this.array[longitud].splice(i, 1)[0]);
-        }
-
-        this.array = this.array.pop();
-
-        return value;
+        return this.array.pop().reverse();
     }
 
     right() {
-        const value = [];
-
-        for(let i = 0; i < this.array.length; i++) {
-            value.push(this.array[0].splice(0, 1)[0]);
-        }
-        this.array = this.array.shift();
-        return value;
+        return this.array.shift();
     }
 }
 
 function snail(array) {
     const SNALL = [];
     const snall = new Snall(array);
+    const matrizLength = array.length - 1;
 
     do {
         SNALL.push(...snall.right());
+        if (array.length === 0) break;
         SNALL.push(...snall.down());
+        if (array.length === 0) break;
         SNALL.push(...snall.left());
+        if (array.length === 0) break;
         SNALL.push(...snall.up());
-    } while(SNALL.length <= array.length * array[0].length);
+    } while (SNALL.length !== matrizLength);
 
     return SNALL;
 }
@@ -71,8 +60,8 @@ console.log('longitud expected: ', 9);
 console.log('----------------------------------------------------------------------------');
 
 // console.log(' result:  ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]),'\n', 'expected:', [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]);
-console.log(' result:  ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]).join('-'),'\n', 'expected:', [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10].join('-'));
-console.log('longitud: ', snail([[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]).length);
+console.log(' result:  ', snail([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]).join('-'), '\n', 'expected:', [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10].join('-'));
+console.log('longitud: ', snail([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]).length);
 console.log('longitud expected: ', 16);
 
 console.log('----------------------------------------------------------------------------');
@@ -84,6 +73,6 @@ console.log('longitud expected: ', 25);
 
 console.log('----------------------------------------------------------------------------');
 
-console.log(' result:  ', snail([[1,2,3,4,5,6], [7,8,9,10,11,12], [13,14,15,16,17,18], [19,20,21,22,23,24], [25,26,27,28,29,30], [31,32,33,34,35,36]]).join('-'), '\n', 'expected:', [1, 2, 3, 4, 5, 6, 12, 18, 24, 30, 36, 35, 34, 33, 32, 31, 25, 19, 13, 7, 8, 9, 10, 11, 17, 23, 29, 28, 27, 26, 21, 22, 26, 20, 14, 15, 16, 21].join('-'));
-console.log('longitud: ', snail([[1,2,3,4,5,6], [7,8,9,10,11,12], [13,14,15,16,17,18], [19,20,21,22,23,24], [25,26,27,28,29,30], [31,32,33,34,35,36]]).length);
+console.log(' result:  ', snail([[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24], [25, 26, 27, 28, 29, 30], [31, 32, 33, 34, 35, 36]]).join('-'), '\n', 'expected:', [1, 2, 3, 4, 5, 6, 12, 18, 24, 30, 36, 35, 34, 33, 32, 31, 25, 19, 13, 7, 8, 9, 10, 11, 17, 23, 29, 28, 27, 26, 21, 22, 26, 20, 14, 15, 16, 21].join('-'));
+console.log('longitud: ', snail([[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24], [25, 26, 27, 28, 29, 30], [31, 32, 33, 34, 35, 36]]).length);
 console.log('longitud expected: ', 36);
