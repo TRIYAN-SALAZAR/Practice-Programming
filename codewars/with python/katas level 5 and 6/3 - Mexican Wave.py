@@ -14,5 +14,4 @@ def wave(people):
         print(string)
     return wave
 
-
 print(wave("gap"))
